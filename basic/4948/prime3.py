@@ -1,34 +1,18 @@
-import sys
-input = sys.stdin.readline
-
-prime_list = [True] * (123456 * 2 + 1)
-prime_list[0] = False
-prime_list[1] = False
-idx = 2
-while (idx <= (123456 * 2 + 1)):
-    if prime_list[idx]:
-        for i in range(idx + idx, 123456 * 2 + 1, idx):
-            prime_list[i] = False
-    idx += 1
-print(prime_list)
-
-
-
-
-
-
-# def cnt_prime(num):
-#     cnt = 0
-#     dup = 2 * num
-#     basis = num + 1
-#     while (basis <= dup):
-#         if (prime_result[basis] == 1):
-#             cnt += 1
-#         basis += 1
-#     return (cnt)
-
-# while (True):
-#     num = int(input().rstrip('\n'))
-#     if num == 0:
-#         break
-#     print(cnt_prime(num))
+num_list = [1] * (123456 *2 + 1)
+num_list[0] = 0
+num_list[1] = 0
+for i in range(2, (123456 * 2 + 1)):
+    if num_list[i]:
+        basis = i + i
+        while (basis <= (123456 * 2)):
+            num_list[basis] = 0
+            basis += i
+while (1):
+    num = int(input())
+    if num == 0:
+        break
+    cnt = 0
+    for i in range(num + 1, 2 * num + 1):
+        if num_list[i] == 1:
+            cnt += 1
+    print(cnt)    

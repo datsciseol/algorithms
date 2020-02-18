@@ -1,4 +1,3 @@
-string = "njz+"
-print("z+" in string)
-string.split("z+")
-print(string)
+# string = input()
+string = "c=icc"
+print(string.split("c="))
