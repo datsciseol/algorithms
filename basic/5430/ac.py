@@ -1,25 +1,39 @@
-def opers(char, num_list):
-    if char == "R":
-        num_list = num_list[::-1]
-        print(num_list)
-        return (1)
-    elif char == "D":
-        if not num_list:
-            return (0)
-        else:
-            del num_list[0]
-            print(num_list)
-            return (1)
+import sys
+import collections
+input = sys.stdin.readline
+test_case = int(input().rstrip())
+for i in range(test_case):
+    opers = input().rstrip()
+    length = int(input().rstrip())
+    num_list = input().rstrip()[1:-1].split(',')
+    reverse = 0
+    if length != 0:
+        try:
+            for oper in opers:
+                if oper == "R":
+                    reverse += 1
+                elif oper == "D" and reverse % 2 == 0:
+                    del num_list[0]
+                    
+                elif oper == "D" and reverse % 2 == 1:
+                    num_list.pop()
+            if reverse % 2:
+                num_list = num_list[::-1]
+                print("[", end = "")
+                print(*num_list, sep = ",", end = "")
+                print("]")
+                
+            else:
+                print("[", end = "")
+                print(*num_list, sep = ",", end = "")
+                print("]")
 
-
-test_case = int(input())
-for _ in range(test_case):
-    func = input()
-    num = int(input())
-    string = input()
-    string = string.replace("[", "").replace("]", "")
-    for oper in func:
-        if not opers(oper, string):
+        except:
             print("error")
-            break
-    print(string)
+    else:
+        for oper in opers:
+            if oper == "D":
+                print("error")
+                break
+        else:
+            print("[]")
