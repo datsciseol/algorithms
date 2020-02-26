@@ -21,10 +21,10 @@ def mat_expon(mat, num):
         return mat
     else:
         while num > 0:
-            if num % 2:
+            if num % 2 == 1:
                 ans = mat_multiple(mat, ans)
             mat = mat_multiple(mat, mat)
-            num /= 2
+            num = num // 2
     return ans
             
 
