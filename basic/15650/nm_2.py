@@ -1,7 +1,5 @@
-from itertools import permutations
-
+from itertools import combinations
 n, m = map(int, input().split())
-num_list = [int(elem) for elem in range(1, n + 1)]
-perm_list = permutations(num_list, m)
-for elem in perm_list:
-    print(elem[0])
+comb_list = combinations(range(1, n + 1), m)
+for elem in comb_list:
+    print(*elem)
