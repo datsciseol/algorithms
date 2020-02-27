@@ -1,20 +1,21 @@
 n, m = map(int, input().split())
+num_list = list(map(int, input().split()))
+num_list.sort()
 check_list = [False] * n
-num_list = [elem + 1 for elem in range(n)]
 result_list = []
-def nm4_dfs(num):
+def nm_6_dfs(num):
     if num == m:
         print(*result_list)
         return
     for iter in range(n):
-        for j in range(iter):
-            check_list[j] = True
         if check_list[iter] == True:
             continue
-        check_list[iter] = True
+        for i in range(iter + 1):
+            check_list[i] = True
         result_list.append(num_list[iter])
-        nm4_dfs(num + 1)
+        nm_6_dfs(num + 1)
         result_list.pop()
-        for k in range(iter, n):
-            check_list[k] = False
-nm4_dfs(0)
+        for j in range(iter, n):
+            check_list[j] = False
+    
+nm_6_dfs(0)
