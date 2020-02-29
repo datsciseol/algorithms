@@ -1,8 +1,6 @@
-result = [0] * 1001
-num = int(input())
-result[1] = 1
-result[2] = 3
-if num >= 3:
-    for i in range(3, num + 1):
-        result[i] = result[i - 1] + 2 * result[i - 2]
-print(result[num] % 10007)
+num_dict = {}
+num_dict[1] = 1
+num_dict[2] = 3
+for iter in range(3, 1001):
+    num_dict[iter] = (2 * num_dict[iter - 2] + num_dict[iter - 1]) % 10007
+print((num_dict[int(input())]) % 10007)

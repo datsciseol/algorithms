@@ -1,18 +1,14 @@
+from collections import defaultdict
 num = int(input())
-answer_list = [1] * 10
-answer_list[0] = 0
-temp_list = answer_list.copy()
-for iter in range(num - 1):
-    temp_list = [0] * 10
-    temp_list[0] += answer_list[1] % 1000000000
-    temp_list[1] += (answer_list[0] + answer_list[2]) % 1000000000
-    temp_list[2] += (answer_list[1] + answer_list[3]) % 1000000000 
-    temp_list[3] += (answer_list[2] + answer_list[4]) % 1000000000
-    temp_list[4] += (answer_list[3] + answer_list[5]) % 1000000000
-    temp_list[5] += (answer_list[4] + answer_list[6]) % 1000000000
-    temp_list[6] += (answer_list[5] + answer_list[7]) % 1000000000
-    temp_list[7] += (answer_list[6] + answer_list[8]) % 1000000000
-    temp_list[8] += (answer_list[7] + answer_list[9]) % 1000000000
-    temp_list[9] += answer_list[8] % 1000000000
-    answer_list = temp_list.copy()
-print(sum(answer_list) % 1000000000)
+num_dict = {}
+num_dict[0] = 0
+for iter in range(1, 10):
+    num_dict[iter] = 1
+for jter in range(num - 1):
+    temp_dict = defaultdict(int)
+    temp_dict[0] += num_dict[1] % 1000000000
+    temp_dict[9] += num_dict[8] % 1000000000
+    for kter in range(1, 9):
+        temp_dict[kter] += (num_dict[kter - 1] + num_dict[kter + 1]) % 1000000000
+    num_dict = temp_dict
+print(sum(num_dict.values()) % 1000000000)
